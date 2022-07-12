@@ -1,13 +1,13 @@
-import { clear } from "@testing-library/user-event/dist/clear"
-import React, {usestate, useEffect, useState } from "react"
-import fire from './components/fire'
+import React, {useState, useEffect} from "react"
+import fire from '../fire'
+import Login from './Login'
 
 const Authenticate = () => {
     const [user, setUser] = useState('')
-    const [email, setEmail] = usestate('')
+    const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const [emailError, setEmailError] = usestate('')
-    const [passwordError, setPasswordError] = usestate('')
+    const [emailError, setEmailError] = useState('')
+    const [passwordError, setPasswordError] = useState('')
     const [hasAccount, setHasAccount] = useState(false)
 
     const clearInputs = () => {
@@ -61,7 +61,7 @@ const Authenticate = () => {
     }
 
     const authListener = () => {
-        fire.aauth().onAuthStateChanged(user => {
+        fire.auth().onAuthStateChanged(user => {
             if(user) {
                 clearInputs()
                 setUser(user)
@@ -77,9 +77,24 @@ const Authenticate = () => {
     }, [])
 
 
-    // return (
-
-    // )
+    return (
+        <>
+            <Login 
+            email={email} 
+            setEmail={setEmail} 
+            password={password} 
+            setPassword={setPassword}
+            handleLogin={handleLogin}
+            handleSignup={handleSignup}
+            hasAccount={hasAccount}
+            setHasAccount={setHasAccount}
+            emailError={emailError}
+            passwordError={passwordError}
+            />
+        </>
+    )
     
     
 }
+
+export default Authenticate
