@@ -1,59 +1,31 @@
 import React from 'react'
+import './Login.css'
+import { auth, provider } from '../firebase-config'
+import {signInWithPopup} from  'firebase/auth'
+import { useNavigate } from 'react-router-dom'
 
-const Login = (props) => {
-    const {
-        email, 
-        setEmail, 
-        password, 
-        setPassword, 
-        handleLogin, 
-        handleSignup, 
-        hasAccount,
-        setHasAccount, 
-        emailError, 
-        passwordError
-    } = props
+const Login = ({setIsAuth}) => {
+
+    let navigate = useNavigate();
+
+    const signInWithGoogle = () => {
+        signInWithPopup(auth, provider.setCustomParameters({
+            prompt: 'select_account'
+        })).then((result) => {
+            localStorage.setItem("isAuth", true);
+            setIsAuth(true);
+            navigate('/');
+        });
+    };
 
     return (
-        <section className='login'>
-            <div className='loginContainer'>
-                <label>Username</label>
-                <input
-                    type='text'
-                    autoFocus
-                    required
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                />
-                <p className='errorMsg'>{emailError}</p>
-                <label>Password</label>
-                <input
-                    type='password'
-                    autoFocus
-                    required
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                />
-                <p className='errorMsg'>{passwordError}</p>
-                <div className='btnContainer'>
-                    {hasAccount ? (
-                        <>
-                            <button onClick={handleLogin} type="button" className="btn btn-primary">Sign In</button>
-                            <p>Don't have an account? 
-                                <span onClick={() => setHasAccount(!hasAccount)}>Sign Up</span>
-                            </p>
-                        </>
-                    ) : (
-                        <>
-                            <button onClick={handleSignup} type="button" className="btn btn-primary">Sign Up</button>
-                            <p>Have an account? 
-                                <span onClick={() => setHasAccount(!hasAccount)}>Sign In</span>
-                            </p>
-                        </>
-                    )}
-                </div>
-            </div>
-        </section>
+        <div className = 'loginPage'>
+            <p>Sign in With Google to Continue</p>
+            <button 
+                className='login-with-google-btn' 
+                on onClick={signInWithGoogle}>Sign in with Google
+            </button>
+        </div>
     )
 }
 

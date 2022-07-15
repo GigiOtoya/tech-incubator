@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react"
 import fire from '../fire'
 import Login from './Login'
 
-const Authenticate = () => {
+const Authenticate = ({setIsAuth}) => {
     const [user, setUser] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -36,13 +36,14 @@ const Authenticate = () => {
                     break
             }
         })
+        window.location.pathname('/')
     }
 
     const handleSignup = () => {
         clearErrors()
         fire
         .auth()
-        .signInWithEmailAndPassword(email, password)
+        .createUserWithEmailAndPassword(email, password)
         .catch((err) => {
             switch (err.code) {
                 case "auth/email-already-in-use":
@@ -53,6 +54,7 @@ const Authenticate = () => {
                     setPasswordError(err.message)
                     break
             }
+            
         })
     }
     
@@ -69,7 +71,8 @@ const Authenticate = () => {
             else {
                 setUser("")
             }
-        })
+        }
+        )
     }
 
     useEffect(() => {
@@ -79,18 +82,20 @@ const Authenticate = () => {
 
     return (
         <>
-            <Login 
-            email={email} 
-            setEmail={setEmail} 
-            password={password} 
-            setPassword={setPassword}
-            handleLogin={handleLogin}
-            handleSignup={handleSignup}
-            hasAccount={hasAccount}
-            setHasAccount={setHasAccount}
-            emailError={emailError}
-            passwordError={passwordError}
-            />
+        {user ? setIsAuth(true):
+        <Login 
+        email={email} 
+        setEmail={setEmail} 
+        password={password} 
+        setPassword={setPassword}
+        handleLogin={handleLogin}
+        handleSignup={handleSignup}
+        hasAccount={hasAccount}
+        setHasAccount={setHasAccount}
+        emailError={emailError}
+        passwordError={passwordError}
+        />}
+            
         </>
     )
     

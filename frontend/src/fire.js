@@ -12,6 +12,7 @@ const firebaseConfig = {
     messagingSenderId: "661263933945", 
     appId: "1:661263933945:web:2ea4d26c130dd35c629d28" 
   };
+  <Link to={'/tasks'} className='tasks'> Tasks </Link>
 
 // Initialize Firebase
 const fire = firebase.initializeApp(firebaseConfig)
