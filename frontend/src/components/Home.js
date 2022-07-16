@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { getDocs, collection, deleteDoc, doc } from "firebase/firestore";
 import { db, auth } from '../firebase-config'
-import './Home.css'
 
 const Home = ({ isAuth }) => {
   const [taskList, setTaskList] = useState([]);
@@ -11,6 +10,7 @@ const Home = ({ isAuth }) => {
   const deleteTask = async (id) => {
     const postDoc = doc(db, 'tasks', id);
     await deleteDoc(postDoc);
+    window.location.reload()
   };
 
   useEffect(() => {
@@ -20,29 +20,16 @@ const Home = ({ isAuth }) => {
     };
 
     getTasks();
-  }, [deleteTask]);
+  }, []);
   
   return (
     <div className="homePage">
       {taskList.map((task) => {
         return (
           <div className="task">
-            <div className="taskHeader">
-              <div className="title">
+            <div className="taskHeader">      
                 <h1> {task.title}</h1>
-              </div>
-              <div className="deleteTask">
-                {isAuth && task.author.id === auth.currentUser.uid && (
-                  <button
-                    onClick={() => {
-                      deleteTask(task.id);
-                    }}
-                  >
-                    {" "}
-                    &#128465;
-                  </button>
-                )}
-              </div>
+              
             </div>
             <div className="taskContainer">
               <div className='taskDescription'>
@@ -52,7 +39,18 @@ const Home = ({ isAuth }) => {
                 {task.details} 
               </div> 
             </div>
-            <h4>Submitted By: {task.author.name}</h4>
+            
+            <h4 className='Submission'>Submitted By: {task.author.name}
+              <div className="deleteTask">
+                <button className='accept' onClick={'s'}>&#x2713;<b>Accept</b></button>
+                {isAuth && (task.author.id === auth.currentUser.uid) && (
+                  <button className='delete' onClick={() => {deleteTask(task.id);}}>
+                    {" "}
+                    &#128465;
+                  </button>
+                )}
+              </div>
+            </h4>
           </div>
         );
       })}

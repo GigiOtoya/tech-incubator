@@ -75,7 +75,7 @@ body {
 }
 
 .tasks:hover {
-  background-color: rgb(61, 103, 180);
+  background-color: rgba(27, 116, 199, 0.692);
   color: white;
 }
 
@@ -95,6 +95,10 @@ body {
   border-color: rgb(54, 108, 209);
   border-radius: 20px;
   color: rgb(54, 108, 209);
+}
+
+.logout:hover {
+  background-color: rgb(245, 245, 245);
 }
 
 .login {
@@ -118,4 +122,89 @@ body {
 
 .login:hover {
   background-color: rgb(245, 245, 245);
+}
+.homePage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.homePage .task {
+  width: 50%;
+  font-family: verdana, arial, helvetica, sans-serif;
+  background-color: white;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  border-radius: 10px;
+}
+
+.tasksPage .showtask {
+  width: 100%;
+  font-family: verdana, arial, helvetica, sans-serif;
+  background-color: white;
+  margin:auto;
+  margin-left: 20px;
+  margin-right: 0px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  border-radius: 10px;
+}
+
+.taskHeader {
+  background-color: rgba(83, 117, 151, 0.87);
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.taskHeader h1 {
+  margin-left: 20px;
+  font-size: xx-large;
+}
+
+.deleteTask .delete{
+  background: none;
+  border: none
+}
+
+.deleteTask .accept{
+  background: none;
+  border: none;
+  margin-right: 40px;
+  color: green;
+}
+
+.deleteTask b {
+  color: white;
+  margin-right: 10px;
+}
+.taskContainer {
+  margin-top: -10px;
+}
+
+.taskDescription {
+  background-color: rgb(36, 82, 126);
+  color: white;
+  padding-left: 20px;
+}
+
+.Submission {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 20px;
+  background-color: rgb(36, 82, 126);
+  color: white;
+  font-size: large;
+  padding-right: 20px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  font-style: italic;
+}
+
+.taskBody {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-right: 20px;
+  margin-left: 20px;
 }

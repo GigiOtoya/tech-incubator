@@ -1,8 +1,16 @@
 .tasksPage {
-    margin:auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.tasksContainer {
+    color:white;
+    margin: auto;
+    margin-top: 0px;
+    margin-right: 0;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: right;
     align-items: center;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: linear-gradient(
@@ -15,11 +23,8 @@
     border-bottom-right-radius: 10px;
 }
 
-h1 {
+.tasksContainer h1 {
     text-align: center;
-}
-.tasksContainer {
-    color:white;
 }
 
 .inputGroup {
@@ -43,4 +48,19 @@ textarea {
     color: black;
     border-radius: 4px;
     width: 20vh;
+}
+
+.userTasks h2 {
+    margin-left: 20px;
+}
+
+.deleteTask button{
+    background: none;
+    border: none
+}
+
+.Accepted-Tasks {
+    border-top: dashed;
+    margin-top: 50px;
+    margin-left: 20px;
 }
